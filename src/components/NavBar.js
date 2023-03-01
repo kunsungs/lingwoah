@@ -2,8 +2,23 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { UserAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 function NavBar() {
+  const { user, logout } = UserAuth();
+  const navigate = useNavigate();
+  
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+      console.log('You are logged out');
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
   return (
     <>
     <Navbar bg="light" variant="light">
@@ -14,7 +29,15 @@ function NavBar() {
         <Nav.Link href="/plans">Plans</Nav.Link>
         <Nav.Link href="#pricing">Calendar</Nav.Link>
         <Nav.Link href="#pricing">Analytics</Nav.Link>
-      </Nav>
+        </Nav> 
+        <Navbar.Collapse className="justify-content-end">
+          <Navbar.Text>
+            User Email: {user && user.email}
+            <Button variant="text" color="secondary" onClick={handleLogout} >
+                Logout
+              </Button>
+          </Navbar.Text>
+        </Navbar.Collapse>
     </Container>
   </Navbar>
   </>

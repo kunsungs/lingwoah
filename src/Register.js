@@ -10,29 +10,24 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { auth } from "./firebase";
-import {
-  createUserWithEmailAndPassword,
-  AuthErrorCodes,
-} from "firebase/auth";
+import { AuthErrorCodes } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { UserAuth } from './context/AuthContext';
 
 function Register() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { createUser } = UserAuth();
   const navigate = useNavigate();
 
   const handleSignUp = async (event) => {
     event.preventDefault();
+    setError('');
     try {
-      const { user } = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(user);
-      // save the current user
-      localStorage.setItem("currentUser", JSON.stringify(user));
-
-
+      await createUser(email, password);
+      navigate ('/dashboard');
     } catch (err) {
         if (err.code === AuthErrorCodes.WEAK_PASSWORD) {
         setError("The password is too weak.");

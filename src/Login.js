@@ -12,12 +12,12 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { auth, googleProvider } from "./firebase";
 import {
-  signInWithEmailAndPassword,
   signInWithPopup,
   AuthErrorCodes, 
   GoogleAuthProvider,
 } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { UserAuth } from './context/AuthContext';
 
 function Copyright(props) {
   return (
@@ -38,12 +38,13 @@ function Login(props) {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { signIn, googlesignIn } = UserAuth();
 
   const handleSignIn = async (event) => {
     event.preventDefault();
-
+    setError('');
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signIn(email, password);
       props.setCurrentUser(userCredential.user);
       navigate("/dashboard");
     } catch (err) {
@@ -61,7 +62,7 @@ function Login(props) {
 
   const handleSignInWithGoogle = async () => {
     try {
-      const userCredential = await signInWithPopup(auth, googleProvider);
+      const userCredential = await googlesignIn(email, password);
       props.setCurrentUser(userCredential.user);
             navigate("/dashboard");
     } catch (error) {
