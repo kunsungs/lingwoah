@@ -40,9 +40,16 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
 
+  const contextValue = {
+    createUser,
+    signIn,
+    user,
+    logout,
+    googlesignIn,
+  }
 
   return (
-    <UserContext.Provider value={{ createUser, user, logout, signIn, googlesignIn }}>
+    <UserContext.Provider value={contextValue}>
       {children}
     </UserContext.Provider>
   );
