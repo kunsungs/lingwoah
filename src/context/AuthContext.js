@@ -8,10 +8,10 @@ import {
 } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase';
 
+const UserContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  const [pending, setPending] = useState(true);
 
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -33,7 +33,6 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log(currentUser);
       setUser(currentUser);
-      setPending(false);
     });
     
     return () => {
@@ -41,17 +40,21 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
 
+  const contextValue = {
+    createUser,
+    signIn,
+    user,
+    logout,
+    googlesignIn,
+  }
 
   return (
-    <UserContext.Provider value={{ createUser, user, logout, signIn, googlesignIn }}>
+    <UserContext.Provider value={contextValue}>
       {children}
     </UserContext.Provider>
   );
 };
-const UserContext = createContext({
-  user: null,
-  isPending: true,
-});
+
 
 export const UserAuth = () => {
   return useContext(UserContext);
