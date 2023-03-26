@@ -1,0 +1,6 @@
+.an-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #C5ADC5;
+  }

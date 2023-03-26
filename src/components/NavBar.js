@@ -28,7 +28,7 @@ function NavBar() {
         <Nav.Link href="/dashboard">Dashboard</Nav.Link>
         <Nav.Link href="/plans">Plans</Nav.Link>
         <Nav.Link href="/calender">Calendar</Nav.Link>
-        <Nav.Link href="#pricing">Analytics</Nav.Link>
+        <Nav.Link href="/analytics">Analytics</Nav.Link>
         </Nav>
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
