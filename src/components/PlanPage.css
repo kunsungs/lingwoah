@@ -1,6 +1,6 @@
-.db-container {
+.pp-container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 1000vh;
     background-color: #C5ADC5;
   }

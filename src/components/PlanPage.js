@@ -13,7 +13,7 @@ import {
   addDoc,
   deleteDoc
 } from 'firebase/firestore';
-import './DashBoard.css';
+import './PlanPage.css';
 import { db } from '../firebase';
 import Plan from './Plan';
 
@@ -96,7 +96,7 @@ function PlanPage() {
   }, []);
 
   return (
-    <div className='db-container'>
+    <div className='pp-container'>
       <NavBar></NavBar>
       <Container>
       <Stack direction="row" sx={{ paddingTop: "0.5em" }}>
