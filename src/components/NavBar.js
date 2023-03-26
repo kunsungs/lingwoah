@@ -9,7 +9,7 @@ import { Button } from '@mui/material';
 function NavBar() {
   const { user, logout } = UserAuth();
   const navigate = useNavigate();
-  
+
   const handleLogout = async () => {
     try {
       await logout();
@@ -27,9 +27,9 @@ function NavBar() {
       <Nav className="me-auto">
         <Nav.Link href="/dashboard">Dashboard</Nav.Link>
         <Nav.Link href="/plans">Plans</Nav.Link>
-        <Nav.Link href="#pricing">Calendar</Nav.Link>
+        <Nav.Link href="/calender">Calendar</Nav.Link>
         <Nav.Link href="#pricing">Analytics</Nav.Link>
-        </Nav> 
+        </Nav>
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
             User Email: {user && user.email}
