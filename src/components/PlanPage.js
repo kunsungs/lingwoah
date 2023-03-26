@@ -91,7 +91,7 @@ function PlanPage() {
       });
       setPlans(plansArr);
     });
-  
+
     return () => unsubscribe();
   }, []);
 
@@ -99,7 +99,8 @@ function PlanPage() {
     <div className='db-container'>
       <NavBar></NavBar>
       <Container>
-      <Stack direction="row" sx={{ paddingTop: "1.5em" }}>
+      <Stack direction="row" sx={{ paddingTop: "0.5em" }}>
+
           <Typography variant="h6" sx={{ lineHeight: 2, paddingRight: "0.5em" }}>
             GENERATE PLAN
           </Typography>
@@ -188,7 +189,3 @@ function PlanPage() {
 }
 
 export default PlanPage;
-
-
-
-

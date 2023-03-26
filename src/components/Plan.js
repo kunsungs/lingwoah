@@ -10,16 +10,16 @@ const Plan = ({ plan, onEdit, deletePlan }) => {
       marginBottom: '10px',
       marginRight: '50px',
       borderRadius: '8px',
-      display: 'inline-block',    
+      display: 'inline-block',
     };
-    
-  
+
+
     const headingStyle = {
       fontSize: '24px',
       fontWeight: 'bold',
       marginBottom: '10px'
     };
-  
+
     const handleEdit = () => {
       onEdit(plan);
     }
