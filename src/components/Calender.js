@@ -1,7 +1,7 @@
 import React from 'react'
 import './Calender.css'
 import NavBar from './NavBar'
-import ProgressTracker from './progressTracker'
+
 
 
 function Calender() {
@@ -11,7 +11,6 @@ function Calender() {
     <>
     <NavBar />
     <div className='cl-container'>
-    <ProgressTracker />
 
     </div>
     </>

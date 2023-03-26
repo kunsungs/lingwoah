@@ -1,7 +1,6 @@
 import React from 'react'
 import './Analytics.css'
 import NavBar from './NavBar'
-import ProgressTracker from './progressTracker'
 
 
 function Analytics() {
@@ -11,7 +10,6 @@ function Analytics() {
     <>
     <NavBar />
     <div className='an-container'>
-    <ProgressTracker />
 
     </div>
     </>
