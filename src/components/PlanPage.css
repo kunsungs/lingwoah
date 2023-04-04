@@ -1,6 +1,6 @@
 .pp-container {
-    display: flex;
-    flex-direction: column;
-    height: 1000vh;
-    background-color: #C5ADC5;
-  }
+  display: flex;
+  flex-direction: column;
+  height: 500vh;
+  background-color: #C5ADC5;
+}

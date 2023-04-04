@@ -1,8 +1,16 @@
 import React from 'react'
 import { Delete } from '@mui/icons-material';
 import { Divider, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Plan = ({ plan, onEdit, deletePlan }) => {
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate(`/plan/${plan.id}`);
+      };
+  
     const planStyle = {
       backgroundColor: '#d5cedc',
       padding: '16px',
@@ -30,6 +38,7 @@ const Plan = ({ plan, onEdit, deletePlan }) => {
         <p>Duration: {plan.startDate.toLocaleDateString()} - {plan.endDate.toLocaleDateString()}</p>
         <p>Level: {plan.level}</p>
         <Divider variant="middle" />
+        <Button onClick={handleNavigate}>VIEW PLAN</Button>
         <Button onClick={handleEdit}>EDIT PLAN</Button>
         <Button onClick={() => deletePlan(plan.id)}>{<Delete />}</Button>
       </div>

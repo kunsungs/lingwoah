@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Modal, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { Button, Container, IconButton, TextField, Stack, Typography } from '@mui/material';
+import { Button, CircularProgress, Container, IconButton, TextField, Stack, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import NavBar from './NavBar';
 import {
@@ -14,8 +14,10 @@ import {
   deleteDoc
 } from 'firebase/firestore';
 import './PlanPage.css';
-import { db } from '../firebase';
+import { db, auth } from '../firebase';
 import Plan from './Plan';
+import { onAuthStateChanged } from 'firebase/auth';
+import PlanDetails from './PlanDetails';
 
 
 function PlanPage() {
@@ -25,8 +27,22 @@ function PlanPage() {
   const [planName, setPlanName] = useState('');
   const [planDuration, setPlanDuration] = useState('');
   const [planLevel, setPlanLevel] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      console.log(currentUser);
+      setUser(currentUser);
+      setLoading(false);
+    });
+    
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const handleAddPlan = async () => {
     const startDate = new Date();
@@ -94,6 +110,11 @@ function PlanPage() {
 
     return () => unsubscribe();
   }, []);
+
+
+  if (loading && !user) {
+    return <CircularProgress color="inherit" sx={{ marginLeft: '50%', marginTop: '25%' }}/>;
+}
 
   return (
     <div className='pp-container'>

@@ -27,12 +27,12 @@ function NavBar() {
       <Nav className="me-auto">
         <Nav.Link href="/dashboard">Dashboard</Nav.Link>
         <Nav.Link href="/plans">Plans</Nav.Link>
-        <Nav.Link href="/calender">Calendar</Nav.Link>
+        <Nav.Link href="/calendar">Calendar</Nav.Link>
         <Nav.Link href="/analytics">Analytics</Nav.Link>
-        </Nav>
+        </Nav> 
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>
-            User Email: {user && user.email}
+            {user && user.email}
             <Button variant="text" color="secondary" onClick={handleLogout} >
                 Logout
               </Button>
